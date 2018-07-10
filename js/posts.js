@@ -93,7 +93,7 @@ function createPostArcticleNode(postObj) {
                 <div class = 'tag-list'>
                     ${generateTagListItemsStringFor(postObj)}
                 </div>
-                <p>${postObj.createdAt}</p>
+                <p>${new Date(postObj.createdAt)}</p>
             </div>
             <button onclick = 'deletePost()'> <i class="fas fa-trash"></i> </button>
         `
@@ -101,8 +101,8 @@ function createPostArcticleNode(postObj) {
 }
 
 function deletePost() {
-    postToDelete = event.target.parentNode;
-    indexToDelete = allPosts.indexOf(postToDelete);
+    let postToDelete = event.target.parentNode;
+    let indexToDelete = allPosts.indexOf(postToDelete);
     postToDelete.remove ? postToDelete.remove() : postToDelete.parentNode.removeChild(postToDelete);
 }
 
@@ -132,7 +132,6 @@ function rerenderPage() {
 function handleSortByDateFormSubmit() {
     event.preventDefault();
     let desc = this.descendingChoise.checked
-    let sortedPosts;
 
     localStorage.setItem('sortType', JSON.stringify({
         name: 'date',
@@ -152,9 +151,8 @@ function comparePostByDate(post1, post2, desc = true) {
 
 function handleSortByTagsFormSubmit() {
     event.preventDefault();
-    searchTagsArr = []
-    let sortedPosts = null;
-    tagsCheckboxes = sortByTagsForm.getElementsByTagName('input')
+    let searchTagsArr = []
+    let tagsCheckboxes = sortByTagsForm.getElementsByTagName('input')
 
     for (let i = 0; i < tagsCheckboxes.length; i++) {
         if (tagsCheckboxes[i].checked) {
