@@ -103,6 +103,7 @@ function createPostArcticleNode(postObj) {
 function deletePost() {
     let postToDelete = event.target.parentNode;
     let indexToDelete = allPosts.indexOf(postToDelete);
+    allPosts.splice(indexToDelete, 1);
     postToDelete.remove ? postToDelete.remove() : postToDelete.parentNode.removeChild(postToDelete);
 }
 
