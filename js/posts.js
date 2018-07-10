@@ -62,8 +62,6 @@ function sortPostsbyDefaults() {
 }
 
 
-
-
 function generateDOMElements(postsData) {
     allPosts = postsData.map((postObj) => {
         return createPostArcticleNode(postObj)
@@ -72,10 +70,9 @@ function generateDOMElements(postsData) {
 
 function renderMorePosts() {
     from = NextPostToRenderIndex;
-    for (let i = from;
-        (i < from + renderStep) && (i < allPosts.length); i++) {
+    for (let i = from; (i < from + renderStep) && (i < allPosts.length); i++) {
         renderPost(allPosts[i])
-            ++NextPostToRenderIndex
+        ++NextPostToRenderIndex
     }
 }
 
