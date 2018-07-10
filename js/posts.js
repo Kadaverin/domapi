@@ -86,7 +86,7 @@ function createPostArcticleNode(postObj) {
     article.classList.add('post');
 
     article.innerHTML = ` 
-            <picture> <img src = ${postObj.image} /> </picture>
+            <picture> <img src = ${fromHttpToHttps(postObj.image)} /> </picture>
             <div class = 'post-content'> 
                 <h2 class = 'post-title'> ${postObj.title} </h2> 
                 <p> ${postObj.description} </p>
@@ -98,6 +98,10 @@ function createPostArcticleNode(postObj) {
             <button onclick = 'deletePost()'> <i class="fas fa-trash"></i> </button>
         `
     return article;
+}
+
+function fromHttpToHttps(url){
+     return url.substr(0, 4) + 's' + url.substr(4);
 }
 
 function deletePost() {
