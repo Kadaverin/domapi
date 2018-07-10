@@ -9,29 +9,35 @@
          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
    </head>
-   <body>
-       <div class = 'posts-wrp'>
-                <!--<article class="post">
-                     <picture>
-                           <img src="img/2.jpg"/>
-                     </picture>
-                     <div class="post-content">
-                        <h2> Gorillaz - The Now Now review by Stephen Thomas Erlewine  </h2>
-                        <p>It's not an unusual move for Gorillaz, releasing a brief, breezy record swiftly on the heels of a magnum opus. The Fall followed Plastic Beach by a matter of 13 months, but that 2011 record was deliberately positioned as an afterthought, promoted as being written and recorded on the road and initially released to the cartoon band's fan club. The Now Now, delivered a mere 14 months after Humanz, echoes The Fall, particularly in how nearly half of its songs carry titles that salute the presumed place of their composition, but this is quite a different beast than any previous Gorillaz album.</p>
-
-                        <div class="tag-list">
-                            <div class="tag-item">Medieval music</div>
-                            <div class="tag-item">Music</div>
-                            <div class="tag-item">tag</div>
-                        </div>
-                        <p  > 0290-01-20T18:19:35.727Z</p>
-                   </div>
-               </article>
-            </div>-->
-       <script src = 'js/posts.js'>     </script>
-       <script> 
-            let posts = new Posts;
-            // setTimeout( 'posts.createPost()' , 200)
-            // posts.createPost()
-       </script>
+   <body >
+      <div class="container">
+         <div class = 'posts-wrp' id = 'posts-wrp'> </div>
+         <div class="page-aside">
+            <section class = 'search-block'>
+               <form action="" class = 'search-form'>
+                  <input type="text" placeholder="Search" id = 'search-input'> 
+               </form>
+            </section>
+            <section class = 'sort-block'>
+               <h3>Sort posts:</h3>
+               <input type="radio" name = 'sort' id = 'sortByDateChoise' checked = 'true'>
+               <label for="sortByDateChoise">by date</label>
+               <input type="radio" name = 'sort' id= 'sortByTagsChoise'>
+               <label for="sortByTagsChoise">by tags</label>
+               <form class = 'sort-by-date-form' id = 'sort-by-date-form'>
+                  <input type="radio" name = 'choiseOrder' id = 'ascendingChoise'>
+                  <label for="ascendingChoise">ascending</label>
+                  <input type="radio" name = 'choiseOrder' id= 'descendingChoise' checked = 'true'>
+                  <label for="descendingChoise">descending</label>
+                  <button type = 'submit'> SORT! </button>
+               </form>
+               <form class = 'sort-by-tags-form' id = 'sort-by-tags-form'>
+                  <div class = 'tag-list' id = 'tag-list-for-sort-choise'> </div>
+                  <button type = 'submit'> SORT! </button>
+               </form>
+            </section>
+            <button id = 'resetButton'>Reset state</button>
+         </div>
+      </div>
+      <script src = 'js/posts.js'>     </script>
    </body>
