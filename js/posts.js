@@ -93,7 +93,7 @@ function createPostArcticleNode(postObj) {
                 <div class = 'tag-list'>
                     ${generateTagListItemsStringFor(postObj)}
                 </div>
-                <p>${new Date(postObj.createdAt)}</p>
+                <p>${postObj.createdAt}</p>
             </div>
             <button onclick = 'deletePost()'> <i class="fas fa-trash"></i> </button>
         `
