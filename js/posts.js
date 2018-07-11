@@ -8,7 +8,7 @@ const defaultSort = {
 const renderStep = 10;
 let allTags = null;
 let allPosts = null;
-let NextPostToRenderIndex = 0;
+let nextPostToRenderIndex = 0;
 let postsContainer = document.getElementById('posts-wrp');
 let searchInput = document.getElementById('search-input');
 let sortByTagsForm = document.getElementById('sort-by-tags-form');
@@ -69,10 +69,10 @@ function generateDOMElements(postsData) {
 }
 
 function renderMorePosts() {
-    from = NextPostToRenderIndex;
+    from = nextPostToRenderIndex;
     for (let i = from; (i < from + renderStep) && (i < allPosts.length); i++) {
         renderPost(allPosts[i]);
-        NextPostToRenderIndex += 1;
+        nextPostToRenderIndex += 1;
     }
 }
 
@@ -128,7 +128,7 @@ function getPostDate(post) {
 function rerenderPage() {
     postsContainer.innerHTML = '' ;
 
-    for (let i = 0; i < NextPostToRenderIndex; i++) {
+    for (let i = 0; i < nextPostToRenderIndex; i++) {
         renderPost(allPosts[i]);
     }
 }
@@ -199,19 +199,40 @@ function intersectionlength(arr1, arr2) {
 }
 
 
-function handleFindPost() {
-    let searchRegExp = new RegExp(this.value.trim(), 'i');
-    let postTitles = document.getElementsByClassName('post-title');
-    let posts = document.getElementsByClassName('post');
+// new version
+function handleFindPost(){
+     let searchRegExp = new RegExp(this.value.trim(), 'i');
+     postsContainer.innerHTML = '';
 
-    for (let i = 0; i < posts.length; i++) {
-        if (searchRegExp.test(postTitles[i].innerText)) {
-            posts[i].style.display = '' ;
-        } else {
-            posts[i].style.display = 'none' ;
-        }
-    }
+     allPosts.forEach( (post, index) => {
+         if(searchRegExp.test(getPostTitle(post))){
+             renderPost(post);
+         }
+     });
 }
+
+function getPostTitle(postNode){
+    return postNode.children[1].children[0].innerText
+}
+
+
+// Old version 
+
+// function handleFindPost() {
+//     let searchRegExp = new RegExp(this.value.trim(), 'i');
+//     let postTitles = document.getElementsByClassName('post-title');
+//     let posts = document.getElementsByClassName('post');
+
+//     for (let i = 0; i < posts.length; i++) {
+//         if (searchRegExp.test(postTitles[i].innerText)) {
+//             posts[i].style.display = '' ;
+//         } else {
+//             posts[i].style.display = 'none' ;
+//         }
+//     }
+// }
+
+
 
 function joinAllTagsOfAllPosts(allPostsData) {
     allTags = allPostsData.reduce((tagsAccumulator, post) => {
@@ -246,6 +267,6 @@ function resetPageToInitialState() {
     event.preventDefault();
     postsContainer.innerHTML = '' ;
     document.body.scrollTop = 0;
-    NextPostToRenderIndex = 0;
+    nextPostToRenderIndex = 0;
     renderMorePosts();
 }
